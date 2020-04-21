@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Co-simulation with GHDL &mdash; GHDL-cosim latest documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  <link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Type declarations" href="vhpidirect/declarations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> GHDL-cosim
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">VHPIDIRECT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/declarations.html">Type declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/wrapping.html">Wrapping a simulation (ghdl_main)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/linking.html">Linking object files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/dynamic.html">Dynamic loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/grt.html">Using GRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">VPI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vpi/examples/index.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">GHDL-cosim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Co-simulation with GHDL</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="co-simulation-with-ghdl">
+<span id="cosim"></span><h1>Co-simulation with GHDL<a class="headerlink" href="#co-simulation-with-ghdl" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="index-0"></span><span class="target" id="index-1"></span><span class="target" id="index-2"></span><span class="target" id="index-3"></span><span class="target" id="index-4"></span><span class="target" id="index-5"></span><p id="index-6">This repository contains documentation and working examples about how to co-simulate VHDL and other languages through
+GHDL’s foreign interfaces. Since specific features of the language and the tool are used, it is suggested for users
+who are new to either <cite>GHDL</cite> or <cite>VHDL</cite> to first read the <a class="reference external" href="https://ghdl.readthedocs.io/en/latest/examples/quick_start/README.html#using-quickstart" title="(in GHDL v1.0-dev)"><span>Quick Start Guide</span></a> in the main documentation
+(<a class="reference external" href="https://ghdl.rtfd.io">ghdl.rtfd.io</a>).</p>
+<p>Three main approaches are used to co-simulate (co-execute) VHDL sources along with software applications written in a
+language other than VHDL (typically C/C++/SystemC):</p>
+<ul class="simple">
+<li><p>Verilog Procedural Interface (VPI), also known as Program Language Interface (PLI) 2.0.</p></li>
+<li><p>VHDL Procedural Interface (VHPI), or specific implementations, such as Foreign Language Interface (FLI).</p></li>
+<li><p>Generation of C/C++ models/sources through a transpiler.</p></li>
+</ul>
+<p>VPI and VHPI are complex APIs which allow to inspect the hierarchy, set callbacks and/or assign signals. Because
+provided features are similar, GHDL supports VPI only. Furthermore, as an easier to use alternative, GHDL features a
+custom coexecution procedure named VHPIDIRECT, similar to SystemVerilog’s Direct Programming Interface (DPI).
+As of today, generation of C++/SystemC models à la Verilator is not supported. However, a <em>vhdlator</em>/<em>ghdlator</em> might
+be available in the future.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">VHPIDIRECT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/declarations.html">Type declarations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/declarations.html#restrictions-on-type-declarations">Restrictions on type declarations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/wrapping.html">Wrapping a simulation (ghdl_main)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/linking.html">Linking object files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/linking.html#linking-foreign-object-files-to-ghdl">Linking foreign object files to GHDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/linking.html#linking-ghdl-object-files-to-ada-c">Linking GHDL object files to Ada/C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/dynamic.html">Dynamic loading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/dynamic.html#loading-foreign-objects-from-within-a-simulation">Loading foreign objects from within a simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/dynamic.html#generating-shared-libraries">Generating shared libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/dynamic.html#loading-a-simulation">Loading a simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/grt.html">Using GRT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/grt.html#from-ada">From Ada</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vhpidirect/examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/examples/quickstart.html">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/quickstart.html#random">random</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/quickstart.html#math">math</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/quickstart.html#customc">customc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/quickstart.html#package">package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/quickstart.html#sharedvar">sharedvar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/examples/wrapping.html">Wrapping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/wrapping.html#basic">basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/wrapping.html#time">time</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/examples/linking.html">Linking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/linking.html#bind">bind</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/examples/shared.html">Shared</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/shared.html#shlib">shlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/shared.html#dlopen">dlopen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/shared.html#shghdl">shghdl</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/examples/arrays.html">Arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/arrays.html#constrained-bounded-integer-arrays">Constrained/bounded integer arrays</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vhpidirect/examples/arrays.html#sized-in-c">Sized in C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vhpidirect/examples/arrays.html#sized-in-vhdl">Sized in VHDL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/arrays.html#logicvector">logicvector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/arrays.html#matrices">matrices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vhpidirect/examples/arrays.html#constrained-multidimensional-arrays-of-doubles-reals">Constrained multidimensional arrays of doubles/reals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vhpidirect/examples/arrays.html#array-and-axi4-stream-verification-components">Array and AXI4 Stream Verification Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vhpidirect/examples/other.html">Other co-simulation projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/other.html#vunit">VUnit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vhpidirect/examples/other.html#ghdlex-and-netpp">ghdlex and netpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Interfacing with foreign languages through VHPIDIRECT is possible on any platform.
+You can define a subprogram in a foreign language (such as <cite>C</cite> or
+<cite>Ada</cite>) and import it into a VHDL design.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GHDL supports different backends, and not all of them generate binary artifacts. Precisely, <code class="docutils literal notranslate"><span class="pre">mcode</span></code> is an in-memory
+backend. Hence, the examples need to be built/executed with either LLVM or GCC backends. A few of them, the ones that
+do not require linking object files, can be used with mcode.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>As a consequence of the runtime copyright, you are not allowed to distribute an
+executable produced by GHDL without allowing access to the VHDL sources. See
+<a class="reference external" href="https://ghdl.readthedocs.io/en/latest/licenses.html#intro-copyrights" title="(in GHDL v1.0-dev)"><span>Copyrights | Licenses</span></a>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See <a class="reference external" href="https://github.com/ghdl/ghdl/issues/1053">ghdl#1053</a> for on-going work with regard to VHPIDIRECT.</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">VPI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vpi/examples/index.html">Examples</a></li>
+</ul>
+</div>
+<p>See <a class="reference external" href="https://ghdl.readthedocs.io/en/latest/using/InvokingGHDL.html#vpi-build-commands" title="(in GHDL v1.0-dev)"><span>VPI build commands</span></a>.</p>
+<p>TBC</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vhpidirect/declarations.html" class="btn btn-neutral float-right" title="Type declarations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Tristan Gingold and contributors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
